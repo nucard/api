@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import * as asyncHandler from 'express-async-handler';
 import { CardsService } from './services/cards.service';
 
 export class RouteDefintion {
@@ -11,12 +12,12 @@ export class AppRoutes {
             {
                 path: '/query/:query',
                 method: 'GET',
-                handler: async (request, response) => {
+                handler: asyncHandler(async (request, response) => {
                     const cardsService = new CardsService();
                     const cards = await cardsService.search(request.params.query);
 
                     response.send(cards);
-                },
+                }),
             },
             {
                 path: '/',
