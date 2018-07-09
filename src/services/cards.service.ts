@@ -165,7 +165,7 @@ Undying _(When this creature dies, if it had no +1/+1 counters on it, return it 
                             }
                         ]
                     },
-                ].filter(c => c.name.indexOf(query) > -1));
+                ].filter(c => c.name.toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) > -1));
             }, 1000);
         });
     }

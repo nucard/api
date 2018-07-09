@@ -2,9 +2,7 @@ import { RequestHandler } from 'express';
 import { CardsService } from './services/cards.service';
 
 export class RouteDefintion {
-    public path: string;
-    public method: string;
-    public handler: RequestHandler;
+    constructor(public path: string, public method: string, public handler: RequestHandler) { }
 }
 
 export class AppRoutes {
