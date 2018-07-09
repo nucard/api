@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Config } from './config';
-const app = express();
+import { AppRoutes } from './routes';
 
 export class Server {
     private _app = express();
@@ -9,9 +9,10 @@ export class Server {
 
     public start() {
         this._app = express();
-        this._app.get('/', (request, response) => {
-            response.send('Hello, friend.');
-        });
+
+        for (const route of AppRoutes.getRoutes()) {
+            this._app.get(route.path, route.handler);
+        }
 
         this._app.listen(Config.port, () => console.log(`API is up on ${Config.port}.`));
     }
