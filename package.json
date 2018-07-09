@@ -1,0 +1,26 @@
+{
+  "name": "@nucard/api",
+  "version": "1.0.0",
+  "description": "The REST API for NuCard, the community-powered platform for collectible card games.",
+  "main": "dist/index",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nucard/api.git"
+  },
+  "keywords": [
+    "nucard"
+  ],
+  "author": "Jammerware",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nucard/api/issues"
+  },
+  "homepage": "https://github.com/nucard/api#readme",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "express": "^4.16.3"
+  }
+}
