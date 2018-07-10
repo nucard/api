@@ -10,13 +10,23 @@ export class AppRoutes {
     public static getRoutes(): RouteDefintion[] {
         return [
             {
-                path: '/query/:query',
+                path: '/cards/query/:query',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
                     const cardsService = new CardsService();
                     const cards = await cardsService.search(request.params.query);
 
                     response.send(cards);
+                }),
+            },
+            {
+                path: '/cards/random',
+                method: 'GET',
+                handler: asyncHandler(async (request, response) => {
+                    const cardsService = new CardsService();
+                    const name = await cardsService.getRandomCard();
+
+                    response.send(name);
                 }),
             },
             {
