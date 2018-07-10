@@ -16,6 +16,8 @@ export class Server {
             this._app.get(route.path, route.handler);
         }
 
+        console.log('config port', process.env.port);
+
         this._app.listen(Config.port, () => console.log(`API is up on ${Config.port}.`));
     }
 }
