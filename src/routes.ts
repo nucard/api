@@ -18,8 +18,6 @@ export class AppRoutes {
                     const cardsService = new CardsService();
                     const card = await cardsService.getRandomCard();
 
-                    console.log('random card', card);
-
                     response.send(card);
                 }),
             },

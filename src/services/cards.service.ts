@@ -25,7 +25,7 @@ export class CardsService {
 
     public async getRandomCard(): Promise<NcCard> {
         const extension = await this.extensionsService.getRandomExtension();
-        const card = await this.httpService.get<NcCard>(`${extension.randomCardEndpoint}}`);
+        const card = await this.httpService.get<NcCard>(`${extension.randomCardEndpoint}`);
 
         return card;
     }
