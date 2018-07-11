@@ -23,10 +23,10 @@ export class CardsService {
         return cards;
     }
 
-    public getRandomCard(): Promise<NcCard> {
-        return new Promise((resolve, reject) => {
-            const extension = this.extensionsService.getRandomExtension();
-            resolve(new NcCard());
-        })
+    public async getRandomCard(): Promise<NcCard> {
+        const extension = await this.extensionsService.getRandomExtension();
+        const card = await this.httpService.get<NcCard>(`${extension.randomCardEndpoint}}`);
+
+        return card;
     }
 }

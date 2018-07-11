@@ -6,25 +6,27 @@ export class ExtensionsService {
         name: "Jammerware's Wild 'n' Crazy MtG Extension",
         apiVersion: { major: 1, minor: 0, patch: 0 },
         extensionVersion: { major: 1, minor: 0, patch: 0 },
-        costsEndpoint: "https://nucard-api.herokuapp.com/costs",
-        queryEndpoint: "https://nucard-api.herokuapp.com/cards/query",
-        randomCardEndpoint: "https://nucard-api.herokuapp.com/cards/random",
-        raritiesEndpoint: "https://nucard-api.herokuapp.com/rarities",
+        costsEndpoint: "https://nucard-api.herokuapp.com/mtg/costs",
+        queryEndpoint: "https://nucard-api.herokuapp.com/mtg/cards/query",
+        randomCardEndpoint: "https://nucard-api.herokuapp.com/mtg/cards/random",
+        raritiesEndpoint: "https://nucard-api.herokuapp.com/mtg/rarities",
     }];
 
     public async getExtensions(): Promise<NcExtension[]> {
-        return this._extensions;
+        return new Promise<NcExtension[]>((resolve, reject) => {
+            resolve(this._extensions);
+        });
     }
 
-    public async getRandomExtension() {
-        return new Promise((resolve, reject) => {
+    public async getRandomExtension(): Promise<NcExtension> {
+        return new Promise<NcExtension>((resolve, reject) => {
             const index = Math.floor(Math.random() * this._extensions.length);
             const ext = this._extensions[index];
             resolve(ext);
         });
     }
 
-    public async getUserExtensions(userId: string) {
-        return this._extensions;
+    public async getUserExtensions(userId: string): Promise<NcExtension[]> {
+        return this.getExtensions();
     }
 }
