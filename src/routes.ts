@@ -17,6 +17,7 @@ export class AppRoutes {
                     const cardsService = new CardsService();
                     const card = await cardsService.getRandomCard();
 
+                    response.type('application/json');
                     response.send(card);
                 }),
             },
@@ -27,6 +28,7 @@ export class AppRoutes {
                     const cardsService = new CardsService();
                     const cards = await cardsService.query('40e08b1d-16f6-4038-b24e-8347eda79565', request.params.query);
 
+                    response.type('application/json');
                     response.send(cards);
                 }),
             },
