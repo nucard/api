@@ -16,7 +16,6 @@ export class CardsService {
 
         for (const extension of extensions) {
             const extensionCards = await this.httpService.get<NcCard[]>(`${extension.queryEndpoint}/${query}`);
-
             cards = cards.concat(extensionCards);
         }
 

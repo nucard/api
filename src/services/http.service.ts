@@ -7,7 +7,7 @@ export class HttpService {
                 if (err) {
                     reject('Http error: ' + err);
                 } else {
-                    resolve(body as T);
+                    resolve(JSON.parse(body) as T);
                 }
             });
         });
