@@ -34,7 +34,7 @@ export class AppRoutes {
                 }),
             },
             {
-                path: '/symbols',
+                path: '/rules-symbols',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
                     const dataService = new ExtensionDataService();

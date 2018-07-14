@@ -9,7 +9,7 @@ export class ExtensionsService {
         queryEndpoint: "https://nucard-mtg.herokuapp.com/cards/query",
         randomCardEndpoint: "https://nucard-mtg.herokuapp.com/cards/random",
         raritiesEndpoint: "https://nucard-mtg.herokuapp.com/rarities",
-        rulesSymbolsEndpoint: "https://nucard-mtg.herokuapp.com/symbols",
+        rulesSymbolsEndpoint: "https://nucard-mtg.herokuapp.com/rules-symbols",
     }];
 
     public async getExtensions(): Promise<NcExtension[]> {
