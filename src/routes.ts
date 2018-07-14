@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import * as asyncHandler from 'express-async-handler';
-import { CardsService } from './services/cards.service';
+import { ExtensionDataService } from './services/extension-data.service';
 import { ExtensionsService } from './services/extensions.service';
 
 export class RouteDefintion {
@@ -14,7 +14,7 @@ export class AppRoutes {
                 path: '/cards/random',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
-                    const cardsService = new CardsService();
+                    const cardsService = new ExtensionDataService();
                     const card = await cardsService.getRandomCard();
 
                     response.type('application/json');
@@ -25,11 +25,24 @@ export class AppRoutes {
                 path: '/cards/query/:query',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
-                    const cardsService = new CardsService();
-                    const cards = await cardsService.query('40e08b1d-16f6-4038-b24e-8347eda79565', request.params.query);
+                    const dataService = new ExtensionDataService();
+                    // this is just a random userId
+                    const cards = await dataService.query('40e08b1d-16f6-4038-b24e-8347eda79565', request.params.query);
 
                     response.type('application/json');
                     response.send(cards);
+                }),
+            },
+            {
+                path: '/symbols',
+                method: 'GET',
+                handler: asyncHandler(async (request, response) => {
+                    const dataService = new ExtensionDataService();
+                    // this is just a random userId
+                    const costs = await dataService.getRulesSymbols('40e08b1d-16f6-4038-b24e-8347eda79565');
+
+                    response.type('application/json');
+                    response.send(costs);
                 }),
             },
             {

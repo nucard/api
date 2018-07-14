@@ -1,4 +1,4 @@
-import { NcExtension } from '@nucard/models';
+import { NcExtension } from '@nucard/models/dist';
 
 export class ExtensionsService {
     private _extensions: NcExtension[] = [{
@@ -6,10 +6,10 @@ export class ExtensionsService {
         name: "Jammerware's Wild 'n' Crazy MtG Extension",
         apiVersion: { major: 1, minor: 0, patch: 0 },
         extensionVersion: { major: 1, minor: 0, patch: 0 },
-        costsEndpoint: "https://nucard-mtg.herokuapp.com/costs",
         queryEndpoint: "https://nucard-mtg.herokuapp.com/cards/query",
         randomCardEndpoint: "https://nucard-mtg.herokuapp.com/cards/random",
         raritiesEndpoint: "https://nucard-mtg.herokuapp.com/rarities",
+        rulesSymbolsEndpoint: "https://nucard-mtg.herokuapp.com/symbols",
     }];
 
     public async getExtensions(): Promise<NcExtension[]> {
