@@ -4,7 +4,7 @@
   "description": "The REST API for NuCard, the community-powered platform for collectible card games.",
   "main": "dist/index",
   "engines": {
-    "node": "8.9.4"
+    "node": "8.9.11"
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
