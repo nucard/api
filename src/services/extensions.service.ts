@@ -7,10 +7,13 @@ export class ExtensionsService {
             name: "Jammerware's A:NR",
             apiVersion: { major: 1, minor: 0, patch: 0 },
             extensionVersion: { major: 1, minor: 0, patch: 0 },
-            externalProvidersEndpoint: "https://nucard-netrunner.herokuapp.com/external-providers",
-            randomCardEndpoint: "https://nucard-netrunner.herokuapp.com/cards/random",
-            rulesSymbolsEndpoint: "https://nucard-netrunner.herokuapp.com/rules-symbols",
-            searchEndpoint: "https://nucard-netrunner.herokuapp.com/cards/search",
+            endpoints: {
+                cards: "https://nucard-netrunner.herokuapp.com/cards",
+                externalProviders: "https://nucard-netrunner.herokuapp.com/external-providers",
+                randomCard: "https://nucard-netrunner.herokuapp.com/cards/random",
+                rulesSymbols: "https://nucard-netrunner.herokuapp.com/rules-symbols",
+                search: "https://nucard-netrunner.herokuapp.com/cards/search",
+            },
         },
     ];
 
