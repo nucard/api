@@ -8,8 +8,9 @@ export class ExtensionsService {
             apiVersion: { major: 1, minor: 0, patch: 0 },
             extensionVersion: { major: 1, minor: 0, patch: 0 },
             endpoints: {
+                card: "https://nucard-netrunner.herokuapp.com/cards",
                 cards: "https://nucard-netrunner.herokuapp.com/cards",
-                externalProviders: "https://nucard-netrunner.herokuapp.com/external-providers",
+                externalInfoProviders: "https://nucard-netrunner.herokuapp.com/external-info-providers",
                 randomCard: "https://nucard-netrunner.herokuapp.com/cards/random",
                 rulesSymbols: "https://nucard-netrunner.herokuapp.com/rules-symbols",
                 search: "https://nucard-netrunner.herokuapp.com/cards/search",
@@ -17,18 +18,19 @@ export class ExtensionsService {
         },
     ];
 
+    public async getExtension(extensionId: string): Promise<NcExtension | undefined> {
+        return Promise.resolve(this._extensions.find(e => e.id === extensionId));
+    }
+
     public async getExtensions(): Promise<NcExtension[]> {
-        return new Promise<NcExtension[]>((resolve, reject) => {
-            resolve(this._extensions);
-        });
+        return Promise.resolve(this._extensions);
     }
 
     public async getRandomExtension(): Promise<NcExtension> {
-        return new Promise<NcExtension>((resolve, reject) => {
-            const index = Math.floor(Math.random() * this._extensions.length);
-            const ext = this._extensions[index];
-            resolve(ext);
-        });
+        const index = Math.floor(Math.random() * this._extensions.length);
+        const ext = this._extensions[index];
+
+        return Promise.resolve(ext);
     }
 
     public async getUserExtensions(userId: string): Promise<NcExtension[]> {

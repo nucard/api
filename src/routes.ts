@@ -11,6 +11,17 @@ export class AppRoutes {
     public static getRoutes(): RouteDefintion[] {
         return [
             {
+                path: '/card/:extensionId/:cardId',
+                method: 'GET',
+                handler: asyncHandler(async (req, res) => {
+                    const dataService = new ExtensionDataService();
+                    const card = await dataService.getCard(req.params.cardId, req.params.extensionId);
+
+                    res.type('application/json');
+                    res.send(card);
+                }),
+            },
+            {
                 path: '/cards/random',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
@@ -22,15 +33,26 @@ export class AppRoutes {
                 }),
             },
             {
-                path: '/cards/query/:query',
+                path: '/cards/search/:query',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
                     const dataService = new ExtensionDataService();
                     // this is just a random userId
-                    const cards = await dataService.query('40e08b1d-16f6-4038-b24e-8347eda79565', request.params.query);
+                    const cards = await dataService.search('40e08b1d-16f6-4038-b24e-8347eda79565', request.params.query);
 
                     response.type('application/json');
                     response.send(cards);
+                }),
+            },
+            {
+                path: '/external-info-providers/:extensionId/:cardId',
+                method: 'GET',
+                handler: asyncHandler(async (request, response) => {
+                    const dataService = new ExtensionDataService();
+                    const providers = await dataService.getExternalInfoProviders(request.params.cardId, request.params.extensionId);
+
+                    response.type('application/json');
+                    response.send(providers);
                 }),
             },
             {
