@@ -56,15 +56,15 @@ export class AppRoutes {
                 }),
             },
             {
-                path: '/factions/:extensionId',
+                path: '/factions/:userId',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
                     const dataService = new ExtensionDataService();
-                    const factions = await dataService.getFactions(request.params.extensionId);
+                    const factions = await dataService.getFactions(request.params.userId);
 
                     if (!factions) {
                         response.sendStatus(404);
-                        response.send(`Couldn't find extension ${request.params.extensionId}.`);
+                        response.send(`Couldn't find user ${request.params.userId}.`);
                     } else {
                         response.type('application/json');
                         response.send(factions);
