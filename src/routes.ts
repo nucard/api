@@ -22,11 +22,11 @@ export class AppRoutes {
                 }),
             },
             {
-                path: '/cards/random',
+                path: '/cards/random/:userId',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
                     const cardsService = new ExtensionDataService();
-                    const card = await cardsService.getRandomCard();
+                    const card = await cardsService.getRandomCard(request.params.userId);
 
                     response.type('application/json');
                     response.send(card);
@@ -53,6 +53,22 @@ export class AppRoutes {
 
                     response.type('application/json');
                     response.send(providers);
+                }),
+            },
+            {
+                path: '/factions/:extensionId',
+                method: 'GET',
+                handler: asyncHandler(async (request, response) => {
+                    const dataService = new ExtensionDataService();
+                    const factions = await dataService.getFactions(request.params.extensionId);
+
+                    if (!factions) {
+                        response.sendStatus(404);
+                        response.send(`Couldn't find extension ${request.params.extensionId}.`);
+                    } else {
+                        response.type('application/json');
+                        response.send(factions);
+                    }
                 }),
             },
             {

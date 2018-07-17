@@ -11,6 +11,7 @@ export class ExtensionsService {
                 card: "https://nucard-netrunner.herokuapp.com/cards",
                 cards: "https://nucard-netrunner.herokuapp.com/cards",
                 externalInfoProviders: "https://nucard-netrunner.herokuapp.com/external-info-providers",
+                factions: "https://nucard-netrunner.herokuapp.com/factions",
                 randomCard: "https://nucard-netrunner.herokuapp.com/cards/random",
                 rulesSymbols: "https://nucard-netrunner.herokuapp.com/rules-symbols",
                 search: "https://nucard-netrunner.herokuapp.com/cards/search",
@@ -26,9 +27,10 @@ export class ExtensionsService {
         return Promise.resolve(this._extensions);
     }
 
-    public async getRandomExtension(): Promise<NcExtension> {
-        const index = Math.floor(Math.random() * this._extensions.length);
-        const ext = this._extensions[index];
+    public async getRandomExtension(userId: string): Promise<NcExtension> {
+        const extensions = await this.getUserExtensions(userId);
+        const index = Math.floor(Math.random() * extensions.length);
+        const ext = extensions[index];
 
         return Promise.resolve(ext);
     }

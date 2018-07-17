@@ -1,8 +1,9 @@
 import {
     NcCard,
+    NcExternalInfoProvider,
+    NcFaction,
     NcPrinting,
     NcRulesSymbol,
-    NcExternalInfoProvider,
 } from '@nucard/models';
 import { ExtensionsService } from './extensions.service';
 import { HttpService } from './http.service';
@@ -34,6 +35,20 @@ export class ExtensionDataService {
         return null;
     }
 
+    public async getFactions(userId: string): Promise<Array<{ extensionId: string, factions: NcFaction[] }>> {
+        const extensions = await this.extensionsService.getUserExtensions(userId);
+        const factions: Array<{ extensionId: string, factions: NcFaction[] }> = [];
+
+        for (const extension of extensions) {
+            factions.push({
+                extensionId: extension.id,
+                factions: await this.httpService.get<NcFaction[]>(extension.endpoints.factions),
+            });
+        }
+
+        return factions;
+    }
+
     public async getRulesSymbols(userId: string): Promise<NcRulesSymbol[]> {
         const extensions = await this.extensionsService.getUserExtensions(userId);
         let symbols: NcRulesSymbol[] = [];
@@ -46,8 +61,8 @@ export class ExtensionDataService {
         return symbols;
     }
 
-    public async getRandomCard(): Promise<NcCard> {
-        const extension = await this.extensionsService.getRandomExtension();
+    public async getRandomCard(userId: string): Promise<NcCard> {
+        const extension = await this.extensionsService.getRandomExtension(userId);
         const card = await this.httpService.get<NcCard>(`${extension.endpoints.randomCard}`);
 
         return card;
