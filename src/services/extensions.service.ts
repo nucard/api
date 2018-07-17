@@ -1,4 +1,4 @@
-import { NcExtension } from '@nucard/models/dist';
+import { NcExtension } from '@nucard/models';
 
 export class ExtensionsService {
     private _extensions: NcExtension[] = [
