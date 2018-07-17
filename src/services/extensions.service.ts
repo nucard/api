@@ -5,6 +5,7 @@ export class ExtensionsService {
         {
             id: 'c059d135-d4b6-493a-b98e-0eba0583d86e',
             name: "Jammerware's A:NR",
+            gameName: "Android: Netrunner",
             apiVersion: { major: 1, minor: 0, patch: 0 },
             extensionVersion: { major: 1, minor: 0, patch: 0 },
             endpoints: {

@@ -4,6 +4,7 @@ import {
     NcFaction,
     NcPrinting,
     NcRulesSymbol,
+    NcSearchResult,
 } from '@nucard/models';
 import { ExtensionsService } from './extensions.service';
 import { HttpService } from './http.service';
@@ -68,15 +69,16 @@ export class ExtensionDataService {
         return card;
     }
 
-    public async search(userId: string, query: string): Promise<NcCard[]> {
+    public async search(userId: string, query: string): Promise<NcSearchResult[]> {
         const extensions = await this.extensionsService.getUserExtensions(userId);
-        let cards: NcCard[] = [];
+        const results: NcSearchResult[] = [];
+        let extensionCards: NcCard[];
 
         for (const extension of extensions) {
-            const extensionCards = await this.httpService.get<NcCard[]>(`${extension.endpoints.search}/${query}`);
-            cards = cards.concat(extensionCards);
+            extensionCards = await this.httpService.get<NcCard[]>(`${extension.endpoints.search}/${query}`);
+            results.push({ extension, cards: extensionCards });
         }
 
-        return cards;
+        return results;
     }
 }
