@@ -84,6 +84,17 @@ export class AppRoutes {
                 }),
             },
             {
+                path: '/user/:userId/extensions',
+                method: 'GET',
+                handler: asyncHandler(async (req, res) => {
+                    const extensionsService = new ExtensionsService();
+                    const extensions = await extensionsService.getUserExtensions(req.params.userId);
+
+                    res.type('application/json');
+                    res.send(extensions);
+                }),
+            },
+            {
                 path: '/',
                 method: 'GET',
                 handler: (request, response) => {
