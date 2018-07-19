@@ -10,12 +10,25 @@ export class ExtensionsService {
             extensionVersion: { major: 1, minor: 0, patch: 0 },
             endpoints: {
                 card: "https://nucard-netrunner.herokuapp.com/cards",
-                cards: "https://nucard-netrunner.herokuapp.com/cards",
                 externalInfoProviders: "https://nucard-netrunner.herokuapp.com/external-info-providers",
                 factions: "https://nucard-netrunner.herokuapp.com/factions",
                 randomCard: "https://nucard-netrunner.herokuapp.com/cards/random",
                 rulesSymbols: "https://nucard-netrunner.herokuapp.com/rules-symbols",
                 search: "https://nucard-netrunner.herokuapp.com/cards/search",
+            },
+        },
+        {
+            id: '177bf6a0-3eec-412c-b114-cf9cc47c295e',
+            name: "Jammerware's Hearthstone",
+            gameName: "Hearthstone",
+            apiVersion: { major: 1, minor: 0, patch: 0 },
+            extensionVersion: { major: 1, minor: 0, patch: 0 },
+            endpoints: {
+                card: "https://nucard-hearthstone.herokuapp.com/card",
+                externalInfoProviders: "https://nucard-hearthstone.herokuapp.com/external-info-providers",
+                factions: "https://nucard-hearthstone.herokuapp.com/factions",
+                randomCard: "https://nucard-hearthstone.herokuapp.com/card/random",
+                search: "https://nucard-hearthstone.herokuapp.com/cards/search",
             },
         },
     ];

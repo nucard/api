@@ -41,10 +41,12 @@ export class ExtensionDataService {
         const factions: Array<{ extensionId: string, factions: NcFaction[] }> = [];
 
         for (const extension of extensions) {
-            factions.push({
-                extensionId: extension.id,
-                factions: await this.httpService.get<NcFaction[]>(extension.endpoints.factions),
-            });
+            if (extension.endpoints.factions) {
+                factions.push({
+                    extensionId: extension.id,
+                    factions: await this.httpService.get<NcFaction[]>(extension.endpoints.factions),
+                });
+            }
         }
 
         return factions;
