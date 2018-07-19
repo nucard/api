@@ -57,8 +57,10 @@ export class ExtensionDataService {
         let symbols: NcRulesSymbol[] = [];
 
         for (const extension of extensions) {
-            const extensionCosts = await this.httpService.get<NcRulesSymbol[]>(`${extension.endpoints.rulesSymbols}`);
-            symbols = symbols.concat(extensionCosts);
+            if (extension.endpoints.rulesSymbols) {
+                const extensionRuleSymbols = await this.httpService.get<NcRulesSymbol[]>(`${extension.endpoints.rulesSymbols}`);
+                symbols = symbols.concat(extensionRuleSymbols);
+            }
         }
 
         return symbols;
