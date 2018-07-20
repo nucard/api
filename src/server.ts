@@ -11,7 +11,6 @@ export class Server {
     public start() {
         this._app = express();
         this._app.use(cors({ origin: true }));
-        this._app.use('/assets', express.static(`${__dirname}\\assets`));
 
         for (const route of AppRoutes.getRoutes()) {
             this._app.get(route.path, route.handler);
