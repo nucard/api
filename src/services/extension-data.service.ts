@@ -36,20 +36,15 @@ export class ExtensionDataService {
         return null;
     }
 
-    public async getFactions(userId: string): Promise<Array<{ extensionId: string, factions: NcFaction[] }>> {
-        const extensions = await this.extensionsService.getUserExtensions(userId);
-        const factions: Array<{ extensionId: string, factions: NcFaction[] }> = [];
+    public async getFactions(extensionId: string): Promise<NcFaction[] | null> {
+        const extension = await this.extensionsService.getExtension(extensionId);
 
-        for (const extension of extensions) {
-            if (extension.endpoints.factions) {
-                factions.push({
-                    extensionId: extension.id,
-                    factions: await this.httpService.get<NcFaction[]>(extension.endpoints.factions),
-                });
-            }
+        if (extension && extension.endpoints.factions) {
+            const factions = await this.httpService.get<NcFaction[]>(extension.endpoints.factions);
+            return factions;
         }
 
-        return factions;
+        return null;
     }
 
     public async getRulesSymbols(userId: string): Promise<NcRulesSymbol[]> {
@@ -58,7 +53,7 @@ export class ExtensionDataService {
 
         for (const extension of extensions) {
             if (extension.endpoints.rulesSymbols) {
-                const extensionRuleSymbols = await this.httpService.get<NcRulesSymbol[]>(`${extension.endpoints.rulesSymbols}`);
+                const extensionRuleSymbols = await this.httpService.get<NcRulesSymbol[]>(extension.endpoints.rulesSymbols);
                 symbols = symbols.concat(extensionRuleSymbols);
             }
         }
