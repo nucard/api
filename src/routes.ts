@@ -25,8 +25,8 @@ export class AppRoutes {
                 path: '/cards/random/:userId',
                 method: 'GET',
                 handler: asyncHandler(async (request, response) => {
-                    const cardsService = new ExtensionDataService();
-                    const card = await cardsService.getRandomCard(request.params.userId);
+                    const dataService = new ExtensionDataService();
+                    const card = await dataService.getRandomCard(request.params.userId);
 
                     response.type('application/json');
                     response.send(card);
